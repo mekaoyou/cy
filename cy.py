@@ -11,7 +11,7 @@ HASE_ANWSERED_CY = [0, ]
 
 
 def queryById(cy_id):
-    sql = u'select %s from CY where ID=%d' % (COLUMNS, cy_id)
+    sql = u'select %s from CY where ID=%d ' % (COLUMNS, cy_id,)
     cy_rs = cy_db.queryUnique(sql)
     if cy_rs is not None:
         return cyEntity(cy_rs)
@@ -61,23 +61,28 @@ def updateName(cy_id, cy_name, cy_spell):
     sql = u'update CY set name="%s",spell="%s" where ID=%d' % (cy_name, cy_spell, cy_id)
     cy_db.dml(sql)
 
+temp = [14]
 
 if __name__ == "__main__":
     # cy_nameLen = queryNameLen(11)
     # print len(cy_nameLen)
     # for cy in cy_nameLen:
     #     print "|\t %d \t|\t %s \t|\t %s \t\t\t\t|\t %s \t\t|\t %s \t|" % (cy.id, cy.name, cy.first, cy.last, cy.spell)
-    for i in range(1, 31852):
+
+    updateName(31657, u'福兮祸所伏，祸兮福所倚', u'fú xī huò suǒ fú， huò xī fú suǒ yǐ')
+
+    ids = [189, 199, 207, 245, 249, 255, 264, 289, 328, 329, 331, 351, 359, 373, 391, 410, 435, 441, 453, 466, 468, 470, 483, 484, 487, 489, 500, 515, 516, 517, 518, 555, 563, 595, 602, 611, 612, 652, 663, 2490, 3832, 3833, 4159, 4160, 4163, 4709, 4955, 6229, 7749, 8069, 8196, 9631, 11020, 11154, 12760, 14759, 15874, 15960, 18875, 18876, 18984, 21734, 22662, 24078, 25946, 26007, 26021, 26024, 27826, 27843, 30779, 31414, 31657, 31722, 31727, 31769, 31809, 31811, 31820, 31824, 31835, 31836, 31844]
+
+    for i in ids:
         cy = queryById(i)
-        if cy is not None:
+        if cy is not None and cy.id not in temp:
             if len(cy.name.replace("，", " ").replace(" ", "")) != len(cy.spell.replace("，", " ").replace("  ", " ").split(" ")):
                 print "|\t %d \t|\t %s \t|\t %s \t\t\t\t|\t %s \t\t|\t %s \t|" % (cy.id, cy.name, cy.first, cy.last, cy.spell)
-
-    # updateName(59, u'成人不自在，自在不成人', u'chéng rén bù zì zài，zì zài bù chéng rén')
-    # updateName(61, u'成则为王，败则为贼', u'chéng zé wéi wáng ，bài zé wéi zéi')
-    # updateName(72, u'仇人相见，分外眼红', u'chóu rén xiāng jiàn，fèn wài yǎn hóng')
+            else:
+                ids.remove(cy.id)
 
     print 'end'
+    print len(ids)
 
     cy_db.close()
 
