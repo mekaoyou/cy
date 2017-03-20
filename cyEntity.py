@@ -12,7 +12,6 @@ class cyEntity:
     samples = ''
     first = ''
     last = ''
-    spell_new = ''
 
     def __init__(self, cydbrs):
         self.id = cydbrs[0]
@@ -23,10 +22,9 @@ class cyEntity:
         self.samples = cydbrs[5]
         self.first = cydbrs[6]
         self.last = cydbrs[7]
-        self.spell_new = cydbrs[8]
 
     def toString(self):
         return "| %s | %s | %s | %s | %s | %s | %s | %s | %s |" % \
               (self.id, self.name, self.spell, self.content, self.derivation,
-               self.samples, self.first, self.last, self.spell_new)
+               self.samples, self.first, self.last)
 
