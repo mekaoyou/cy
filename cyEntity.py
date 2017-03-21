@@ -24,7 +24,7 @@ class cyEntity:
         self.last = cydbrs[7]
 
     def toString(self):
-        return "| %s | %s | %s | %s | %s | %s | %s | %s | %s |" % \
+        return "| %s | %s | %s | %s | %s | %s | %s | %s |" % \
               (self.id, self.name, self.spell, self.content, self.derivation,
                self.samples, self.first, self.last)
 
